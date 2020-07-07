@@ -166,9 +166,9 @@ suite('Functional Tests', function() {
 
   // On Gomix we'll use this setting
   /** ### Copy your project's url here  ### **/
-   Browser.site = 'https://kndwin-lessons-mochachai.herokuapp.com'
+  Browser.site = 'https://kndwin-lessons-mochachai.herokuapp.com'
   
- // If you are testing on a local environment replace the line above  with 
+  // If you are testing on a local environment replace the line above  with 
    // Browser.localhost('localhost', (process.env.PORT || 3000));
 
   suite('e2e Testing with Zombie.js', function() {
@@ -266,7 +266,7 @@ suite('Functional Tests', function() {
             browser.assert.success()
             browser.assert.text('span#name', 'Amerigo')
             browser.assert.text('span#surname', 'Vespucci')
-            browser.assert.element('span#dates' 1)
+            browser.assert.element('span#dates', 1)
             done();
           })
       
