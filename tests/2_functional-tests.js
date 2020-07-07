@@ -120,12 +120,13 @@ suite('Functional Tests', function() {
        // we setup the request for you...
        chai.request(server)
         .put('/travellers')
-        /** send {surname: 'Colombo'} here **/
-        // .send({...})
+        .send({surname: 'Colombo'})
         .end(function(err, res){
           
-          /** your tests here **/
-          assert.fail(); // remove this after adding tests
+          assert.equal(res.status, 200, 'response status should be 200')
+          assert.equal(res.type, 'application/json', 'response should be json')
+          assert.equal(res.body.name, 'Cristoforo', 'name should be Cristoforo')
+          assert.equal(res.body.surname, 'Colombo', 'surname should be Colombo')
           
           done(); // Never forget the 'done()' callback...
         });
@@ -134,12 +135,17 @@ suite('Functional Tests', function() {
       /** Repetition is the mother of learning. **/
       // Try it again. This time without help !!
       test('send {surname: "da Verrazzano"}', function(done) {
-        /** place the chai-http request code here... **/
-        
-        /** place your tests inside the callback **/
-        
-        assert.fail(); // remove this after adding tests
-        done();
+
+        chai.request(server)
+          .put('/travellers')
+          .send({ surname: 'da Verrazzano' })
+          .end( function(err, res ){
+            assert.equal(res.status, 200, 'response status should be 200')
+            assert.equal(res.type, 'application/json', 'response should be json')
+            assert.equal(res.body.name, 'Giovanni', 'name should be Giovanni')
+            assert.equal(res.body.surname, 'da Verrazzano', 'surname should be da Verrazzano')
+            done();
+          })
       });
     });
 
